@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drips • Mobile Menu</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="phone">
+    <header class="top">
+      <div class="brand">
+        <div class="logo">Drips</div>
+        <div class="tag">Coffee & Cocoa • Mobile Menu</div>
+      </div>
+      <button class="iconBtn" id="openCartBtn" aria-label="Open cart">
+        <span class="cartDot" id="cartDot" hidden></span>
+        🛒
+      </button>
+    </header>
+
+    <section class="hero">
+      <div class="heroCard">
+        <div class="heroTitle">Order in seconds.</div>
+        <div class="heroSub">Tap items → choose options → done.</div>
+
+        <div class="searchWrap">
+          <span class="searchIcon">⌕</span>
+          <input id="searchInput" class="search" type="search" placeholder="Search Spanish Latte, cookies, V60…" />
+        </div>
+
+        <div class="pillRow" role="tablist" aria-label="Temperature filter">
+          <button class="pill active" data-temp="all" role="tab" aria-selected="true">All</button>
+          <button class="pill" data-temp="hot" role="tab">Hot</button>
+          <button class="pill" data-temp="cold" role="tab">Cold</button>
+        </div>
+
+        <div class="catRow" id="catRow">
+          <button class="chip active" data-cat="all">All</button>
+          <button class="chip" data-cat="coffee">Coffee</button>
+          <button class="chip" data-cat="cocoa">Cocoa</button>
+          <button class="chip" data-cat="dessert">Desserts</button>
+        </div>
+      </div>
+    </section>
+
+    <main class="content">
+      <div class="sectionTitle">Popular</div>
+      <div class="grid" id="menuGrid"></div>
+    </main>
+
+    <nav class="bottomNav" aria-label="Bottom navigation">
+      <button class="navBtn active" id="navHome">🏠<span>Menu</span></button>
+      <button class="navBtn" id="navCart">🛍️<span>Cart</span></button>
+      <button class="navBtn" id="navInfo">ℹ️<span>Info</span></button>
+    </nav>
+
+    <div class="sheetBackdrop" id="backdrop" hidden></div>
+
+    <section class="sheet" id="itemSheet" aria-label="Item options" hidden>
+      <div class="sheetHandle"></div>
+      <div class="sheetBody">
+        <div class="sheetTop">
+          <div>
+            <div class="sheetName" id="sheetName">Item</div>
+            <div class="sheetDesc" id="sheetDesc">Description</div>
+          </div>
+          <button class="iconBtn" id="closeSheetBtn" aria-label="Close">✕</button>
+        </div>
+
+        <div class="optionGroup" id="optTemp" hidden>
+          <div class="optTitle">Temperature</div>
+          <div class="segRow">
+            <button class="seg" data-k="temp" data-v="hot">Hot</button>
+            <button class="seg" data-k="temp" data-v="cold">Cold</button>
+          </div>
+        </div>
+
+        <div class="optionGroup" id="optSize" hidden>
+          <div class="optTitle">Size</div>
+          <div class="segRow">
+            <button class="seg" data-k="size" data-v="S">S</button>
+            <button class="seg" data-k="size" data-v="M">M</button>
+            <button class="seg" data-k="size" data-v="L">L</button>
+          </div>
+        </div>
+
+        <div class="optionGroup" id="optMilk" hidden>
+          <div class="optTitle">Milk</div>
+          <div class="segRow">
+            <button class="seg" data-k="milk" data-v="Regular">Regular</button>
+            <button class="seg" data-k="milk" data-v="Low-fat">Low-fat</button>
+            <button class="seg" data-k="milk" data-v="Oat">Oat</button>
+          </div>
+        </div>
+
+        <div class="optionGroup" id="optSugar" hidden>
+          <div class="optTitle">Sugar</div>
+          <div class="segRow">
+            <button class="seg" data-k="sugar" data-v="0%">0%</button>
+            <button class="seg" data-k="sugar" data-v="50%">50%</button>
+            <button class="seg" data-k="sugar" data-v="100%">100%</button>
+          </div>
+        </div>
+
+        <div class="qtyRow">
+          <div class="qtyLeft">
+            <div class="optTitle">Quantity</div>
+            <div class="muted">Adjust before adding</div>
+          </div>
+          <div class="qtyControl">
+            <button class="qtyBtn" id="qtyMinus">−</button>
+            <div class="qtyVal" id="qtyVal">1</div>
+            <button class="qtyBtn" id="qtyPlus">+</button>
+          </div>
+        </div>
+
+        <div class="priceRow">
+          <div>
+            <div class="optTitle">Total</div>
+            <div class="muted" id="priceNote">Price updates with options</div>
+          </div>
+          <div class="price" id="sheetPrice">𑿝 0</div>
+        </div>
+
+        <button class="primaryBtn" id="addToCartBtn">Add to Cart</button>
+      </div>
+    </section>
+
+    <section class="sheet" id="cartSheet" aria-label="Cart" hidden>
+      <div class="sheetHandle"></div>
+      <div class="sheetBody">
+        <div class="sheetTop">
+          <div>
+            <div class="sheetName">Your Cart</div>
+            <div class="sheetDesc" id="cartSub">0 items</div>
+          </div>
+          <button class="iconBtn" id="closeCartBtn" aria-label="Close">✕</button>
+        </div>
+
+        <div class="cartList" id="cartList"></div>
+
+        <div class="cartFooter">
+          <div class="cartTotalRow">
+            <div>
+              <div class="optTitle">Total</div>
+              <div class="muted">Taxes/fees not included</div>
+            </div>
+            <div class="price" id="cartTotal">𑿝 0</div>
+          </div>
+
+          <button class="primaryBtn" id="checkoutBtn">Checkout</button>
+          <button class="ghostBtn" id="clearCartBtn">Clear cart</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet" id="infoSheet" aria-label="Info" hidden>
+      <div class="sheetHandle"></div>
+      <div class="sheetBody">
+        <div class="sheetTop">
+          <div>
+            <div class="sheetName">Drips</div>
+            <div class="sheetDesc">Mobile ordering menu</div>
+          </div>
+          <button class="iconBtn" id="closeInfoBtn" aria-label="Close">✕</button>
+        </div>
+
+        <div class="infoCard">
+          <div class="infoLine"><span>⏱</span> Fast ordering for phone customers</div>
+          <div class="infoLine"><span>📍</span> Add location later if you want</div>
+          <div class="infoLine"><span>💳</span> Payments later (this is UI only)</div>
+          <div class="infoSmall">Tip: Keep this page open and it will remember your cart until you refresh.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
